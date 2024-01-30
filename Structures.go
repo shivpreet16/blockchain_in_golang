@@ -4,11 +4,29 @@ import (
 	"crypto/ecdsa"
 )
 
+type Transaction struct {
+	From   *ecdsa.PublicKey
+	To     *ecdsa.PublicKey
+	Amount int
+}
+
 type Block struct{
 	Timestamp int64
 	PreviousHash []byte
 	CurrHash []byte
 	AllData []byte 
+}
+
+type Blockchain struct{
+	Blocks []*Block
+}
+
+type Wallet struct {
+    PrivateKey *ecdsa.PrivateKey
+    PublicKey  *ecdsa.PublicKey
+	Eth int
+	Email string
+    Address string
 }
 
 /*
@@ -29,14 +47,3 @@ type Block struct{
 
 Do txn -> data+nonce === hash || check verifyTXN()
 */
-
-type Blockchain struct{
-	Blocks []*Block
-}
-
-type Wallet struct {
-    PrivateKey *ecdsa.PrivateKey
-    PublicKey  *ecdsa.PublicKey
-	Eth int
-    Address string
-}
